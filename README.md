@@ -36,11 +36,11 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
 #### Copy generated binary files to the beaglebone blue
 
-  `$ scp build/blue/bin/* debian@beaglebone:~/ardupilot_bin/.
+  `$ scp build/blue/bin/* debian@beaglebone:~/ardupilot_bin/.`
  
-  *Note that you may change the paths in the beaglebone blue depending on wheter you want the binary files.*
+  *Note that you may change the paths in the beaglebone blue depending on where you want the binary files.*
 
-#### Notes for future updates of Ardupilot or Beaglebone blue:
+## Notes for future updates of Ardupilot or Beaglebone blue:
 
   * Check the version.sh script to verify that you are pointing to the last ardupilot (copter branch) repository.
 
@@ -48,7 +48,7 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
 ## Extra
 
-#### Setup ardupilot to start automatically with beaglebone blue boot (as service) 
+#### Start automatically with beaglebone blue boot (as service) 
 
   * Create **in the beaglebone blue** the following file with your favorite editor (e.g. vim)
 
@@ -56,7 +56,8 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
     * Add the following lines to the file:
 
-    `[Unit]
+```
+    [Unit]
     Description=ArduCopter Service
     After=bb-wl18xx-wlan0.service
 
@@ -68,7 +69,8 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
     [Install]
     WantedBy=multi-user.target
-    Alias=Arducopter.service`
+    Alias=Arducopter.service
+```
 
   *Notice how the bold line depends on your desired configuration*
 
