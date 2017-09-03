@@ -8,11 +8,11 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
 ## Cross compile with Ubuntu:
 
-#### Prerequisites
+<#### Prerequisites>
 
-  * Install compiler for ARM:
+  <* Install compiler for ARM:>
 
-    `$ sudo apt-get install gcc-arm-linux-gnueabi`
+    <`$ sudo apt-get install gcc-arm-linux-gnueabi`>
 
 #### Get the code
 
