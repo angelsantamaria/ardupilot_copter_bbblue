@@ -4,7 +4,7 @@ Ardupilot using Beaglebone Blue.
 
 **This repo aims to easy the download of the ardupilot (copter) code to be used with beaglebone blue.**
 
-Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
+Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
 ## Cross compile with Ubuntu:
 
@@ -21,8 +21,6 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
   `$ cd ardupilot_copter_bbblue`
 
   `$ ./generate_source.sh`
-
-  `$ tar xf ardupilot-copter-blue*`
 
 #### Cross compile it
 
@@ -93,19 +91,3 @@ Extracted from [Robert Nelson repos](https://github.com/rcn-ee/repos).
   `$ sudo systemctl stop ArduCopter.service`
 
   `$ sudo reboot`
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
