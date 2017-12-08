@@ -60,17 +60,21 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
     After=bb-wl18xx-wlan0.service
 
     [Service]
-    ExecStartPre=/bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_21_pinmux/state
-    ExecStartPre=/bin/echo uart > /sys/devices/platform/ocp/ocp\:P9_22_pinmux/state
-    **ExecStart=/home/debian/bin/arducopter -A udp:192.168.8.127:14550**
+    ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_21_pinmux/state"
+    ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_22_pinmux/state"
+    ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_24_pinmux/state"
+    ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_26_pinmux/state"
+    ExecStartPre=/bin/bash -c "/bin/echo pruecapin_pu > /sys/devices/platform/ocp/ocp:P8_15_pinmux/state"
+    ExecStart=/home/debian/ardupilot_bin/arducopter -A udp:192.168.8.95:14550 -B /dev/tty05
     StandardOutput=null
+    Restart=on-failure
 
     [Install]
     WantedBy=multi-user.target
     Alias=Arducopter.service
 ```
 
-  *Notice how the bold line depends on your desired configuration*
+  *Notice how the 5th [Service] line depends on your desired configuration*
 
   * Enable the new service
 
@@ -90,4 +94,4 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
   `$ sudo systemctl stop ArduCopter.service`
 
-  `$ sudo reboot`
+  `$ sudo shutdown -h now
