@@ -6,7 +6,63 @@ Ardupilot using Beaglebone Blue.
 
 Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
-## Cross compile with Ubuntu:
+## Initial steps: BBBlue installation and pre-requisits
+
+  * Download the latest [debian image](https://beagleboard.org/latest-images)
+  
+  * Uncompress it with the command:
+    
+    `$ unxz ~/Downloads/file.img.xz`
+  
+  * Format and write the image to the memory card (please check that you have the correct SD card device, in my case it is /dev/mmcblk0p1)
+    
+    `$ sudo dd if=~/Downloads/file.img of=/dev/mmcblk0p1`
+  
+  * Start the beaglebone from the SD card and connect it to a wifi network:
+  
+    `$ connmanctl`
+    
+    `$ connmanctl > enable wifi `
+    
+    `$ connmanctl > scan wifi`
+     
+    `$ connmanctl > services`
+    
+    `$ connmanctl > agent on`
+    
+    `$ connmanctl > connect wifi_506583d4fc5e_544e434150413937414239_managed_psk `
+    
+    `$ Passphrase? xxxxxxxxxxx`
+     
+    `$ connmanctl > quit`
+    
+  * Update and install software:
+  
+    `$ sudo apt update && sudo apt upgrade -y`
+    
+    `$ sudo apt install -y bb-cape-overlays cpufrequtils`
+    
+  * Set clock to 1GHz:
+  
+    `$ sudo sed -i 's/GOVERNOR="ondemand"/GOVERNOR="performance"/g' /etc/init.d/cpufrequtils`
+   
+  * Add Blue DTB:
+  
+    `$ sudo sed -i 's/#dtb=$/dtb=am335x-boneblue-ArduPilot.dtb/' /boot/uEnv.txt`
+  
+  * Update scripts:
+  
+    `$ cd /opt/scripts && sudo git pull`
+  
+  * Install RT Kernel 4.4:
+  
+    `$ sudo /opt/scripts/tools/update_kernel.sh --ti-rt-channel --lts-4_4`
+  
+  * Restart beagleboneblue:
+  
+    `$ sudo shutdown -h now`
+
+## ArduCopter: Cross compile with Ubuntu:
 
 <!--#### Prerequisites-->
 
@@ -44,9 +100,7 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
   * If debian Jessie version is updated you have to update the suite folder. 
 
-## Extra
-
-#### Start automatically with beaglebone blue boot (as service) 
+## Start automatically with beaglebone blue boot (as service) 
 
   * Create **in the beaglebone blue** the following file with your favorite editor (e.g. vim)
 
