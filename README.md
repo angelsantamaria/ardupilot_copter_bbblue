@@ -111,7 +111,8 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 ```
     [Unit]
     Description=ArduCopter Service
-    After=bb-wl18xx-wlan0.service
+    After=networking.service
+    Conflicts=arduplane.service ardupilot.service ardurover.service
 
     [Service]
     ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_21_pinmux/state"
@@ -184,15 +185,15 @@ rc_test_servos -c $num -e 0.07
 PS1='\[\033[0;35m\]\u\[\033[0m\]\[\033[0;36m\]@\h\[\033[0m\]:\[\033[1;37m\]\w \$\[\033[0m\] '
 
 alias ..='cd ..'
-alias editbash='vim ~/.bashrc_bbblue'
+alias editbash='vim ~/.bashrc'
 alias sourcebash='source ~/.bashrc'
 alias setusbinternet='sudo route add default gw 192.168.6.1'
-alias poff='sudo poweroff'
+alias poff='sudo shutdown -h now'
 alias setarducopter_service='echo "sudo vim /lib/systemd/system/ArduCopter.service"'
 alias startarducopter='sudo systemctl start ArduCopter.service'
 alias stoparducopter='sudo systemctl stop ArduCopter.service'
-alias enablearducopter_service='cd /lib/systemd/system; sudo systemctl enable ArduCopter.service; sudo systemctl start ArduCopter.service; sudo reboot'
-alias disablearducopter_service='cd /lib/systemd/system; sudo systemctl disable ArduCopter.service; sudo systemctl stop ArduCopter.service; sudo reboot'
+alias enablearducopter_service='cd /lib/systemd/system; sudo systemctl enable ArduCopter.service; sudo systemctl start ArduCopter.service; sudo shutdown -h now'
+alias disablearducopter_service='cd /lib/systemd/system; sudo systemctl disable ArduCopter.service; sudo systemctl stop ArduCopter.service; sudo shutdown -h now'
 ```
   * Add Specific DNS adress leases for the hotspot by editting the file `/etc/dnsmasq.conf` and adding a line similar than this:
   
