@@ -149,3 +149,48 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
   `$ sudo systemctl stop ArduCopter.service`
 
   `$ sudo shutdown -h now`
+
+## Extras
+
+#### Scripts to Calibrate ESCs
+
+  * Create a bash script with execution permisions with the following content:
+  
+```
+#!/bin/bash
+#A little script to check the spinning direction of motors before final assembling
+#echo "-- Spinning Checker --"
+#echo "You should connect the ESC on channel 1"
+
+echo ""
+echo "== ESC Calibration procedure == "
+echo ""
+
+while true; do
+    read -p "Which ESC do you want to calibrate: 1, 2, 3 or 4? " num
+    case $num in
+        [1234]* ) break;;
+        * ) echo "Please choose one of the above numbers.";;
+    esac
+done
+
+echo "Calibrating ESC number $num"
+rc_calibrate_escs
+rc_test_servos -c $num -e 0.07
+```
+  * Edit `.bashrc` file to add some useful aliases:
+  
+```
+PS1='\[\033[0;35m\]\u\[\033[0m\]\[\033[0;36m\]@\h\[\033[0m\]:\[\033[1;37m\]\w \$\[\033[0m\] '
+
+alias ..='cd ..'
+alias editbash='vim ~/.bashrc_bbblue'
+alias sourcebash='source ~/.bashrc'
+alias setusbinternet='sudo route add default gw 192.168.6.1'
+alias poff='sudo poweroff'
+alias setarducopter_service='echo "sudo vim /lib/systemd/system/ArduCopter.service"'
+alias startarducopter='sudo systemctl start ArduCopter.service'
+alias stoparducopter='sudo systemctl stop ArduCopter.service'
+alias enablearducopter_service='cd /lib/systemd/system; sudo systemctl enable ArduCopter.service; sudo systemctl start ArduCopter.service; sudo reboot'
+alias disablearducopter_service='cd /lib/systemd/system; sudo systemctl disable ArduCopter.service; sudo systemctl stop ArduCopter.service; sudo reboot'
+```
