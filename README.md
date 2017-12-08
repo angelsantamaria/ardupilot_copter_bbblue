@@ -14,10 +14,8 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
     
     `$ unxz ~/Downloads/file.img.xz`
   
-  * Format and write the image to the memory card (please check that you have the correct SD card device, in my case it is /dev/mmcblk0p1)
-    
-    `$ sudo dd if=~/Downloads/file.img of=/dev/mmcblk0p1 bs=4M`
-    
+  * Format (ext4) and write the image to the memory card using [Startup disk creator](https://apps.ubuntu.com/cat/applications/precise/usb-creator-gtk/)
+        
     At this point you may want to resize the partition to the full SD card size. You can do it with [Gparted](https://gparted.org/). 
   
   * Start the beaglebone from the SD card and connect it to a wifi network:
