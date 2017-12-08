@@ -111,8 +111,7 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 ```
     [Unit]
     Description=ArduCopter Service
-    After=networking.service
-    Conflicts=arduplane.service ardupilot.service ardurover.service
+    After=bb-wl18xx-wlan0.service
 
     [Service]
     ExecStartPre=/bin/bash -c "/bin/echo uart > /sys/devices/platform/ocp/ocp:P9_21_pinmux/state"
