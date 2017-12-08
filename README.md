@@ -194,3 +194,6 @@ alias stoparducopter='sudo systemctl stop ArduCopter.service'
 alias enablearducopter_service='cd /lib/systemd/system; sudo systemctl enable ArduCopter.service; sudo systemctl start ArduCopter.service; sudo reboot'
 alias disablearducopter_service='cd /lib/systemd/system; sudo systemctl disable ArduCopter.service; sudo systemctl stop ArduCopter.service; sudo reboot'
 ```
+  * Add Specific DNS adress leases for the hotspot by editting the file `/etc/dnsmasq.conf` and adding a line similar than this:
+  
+  `dhcp-host=cc:af:78:d0:89:39,192.168.8.95,infinite`
