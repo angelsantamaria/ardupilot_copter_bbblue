@@ -17,6 +17,8 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
   * Format and write the image to the memory card (please check that you have the correct SD card device, in my case it is /dev/mmcblk0p1)
     
     `$ sudo dd if=~/Downloads/file.img of=/dev/mmcblk0p1`
+    
+    At this point you may want to resize the partition to the full SD card size. You can do it with [Gparted](https://gparted.org/). 
   
   * Start the beaglebone from the SD card and connect it to a wifi network:
   
@@ -148,4 +150,4 @@ Inspired from [Robert Nelson repos](https://github.com/rcn-ee/repos).
 
   `$ sudo systemctl stop ArduCopter.service`
 
-  `$ sudo shutdown -h now
+  `$ sudo shutdown -h now`
